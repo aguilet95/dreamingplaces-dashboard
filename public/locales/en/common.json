@@ -1,0 +1,21 @@
+{
+  "server-error": "An error occured, please try again later",
+  "signin": "Sign in",
+  "signin-description": "Sign in to access the dashboard",
+  "signin-no-account": "Don't have an account ?",
+  "auth-error": "Invalid email or password",
+  "signup": "Sign up",
+  "signup-description": "Create an account to access the dashboard",
+  "firstname": "Firstname",
+  "lastname": "Lastname",
+  "email": "Email",
+  "password": "Password",
+  "email-already-exists": "An account with this email already exists",
+  "logout": "Logout",
+  "manage-accounts": "Manage accounts",
+  "all-accounts": "All accounts",
+  "recent-accounts": "Accounts without properties",
+  "recent-accounts-description": "Accounts without properties affected",
+  "manage-account-details": "Manage account",
+  "manage-account-details-description": "Manage accounts accesses"
+}

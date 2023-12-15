@@ -1,0 +1,21 @@
+{
+  "server-error": "Une erreur est survenue, merci de réessayer plus tard",
+  "signin": "Connexion",
+  "signin-description": "Connectez-vous pour accéder au dashboard",
+  "signin-no-account": "Vous n'avez pas encore de compte ?",
+  "auth-error": "Email ou mot de passe incorrect",
+  "signup": "Inscription",
+  "signup-description": "Créer un compte pour accéder au dashboard",
+  "firstname": "Prénom",
+  "lastname": "Nom",
+  "email": "Email",
+  "password": "Mot de passe",
+  "email-already-exists": "Un compte existe déjà avec cette adresse email",
+  "logout": "Déconnexion",
+  "manage-accounts": "Gestion des comptes",
+  "all-accounts": "Tous les comptes",
+  "recent-accounts": "Comptes sans propriétés",
+  "recent-accounts-description": "Comptes sans propriétés affectées",
+  "manage-account-details": "Gérer le compte",
+  "manage-account-details-description": "Gérer les accès dont dispose le compte"
+}

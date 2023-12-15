@@ -1,0 +1,20 @@
+version: "3.7"
+services:
+  dashboard:
+    image: node:20.9.0-alpine
+    working_dir: /usr/src/app
+    user: node:node
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 3000:3000
+      - 3001:3001
+    command: npm run dev
+    depends_on:
+      - db
+  db:
+    image: postgres:16.0-alpine
+    environment:
+      POSTGRES_USER: dreamingplaces
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dreamingplaces_dashboard
