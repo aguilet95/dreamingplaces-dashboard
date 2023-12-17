@@ -38,7 +38,7 @@ export const getApartment = async (id: number) => {
     }
   });
   const jsonResponse = await res.json();
-  return responseSchema.safeParse(jsonResponse.apartment);
+  return responseSchema.safeParse(jsonResponse);
 }
 
 export const getBookings = async ({ apartmentId, pageSize }: { apartmentId?: number; pageSize?: number }) => {
@@ -52,7 +52,7 @@ export const getBookings = async ({ apartmentId, pageSize }: { apartmentId?: num
     })),
   });
 
-  const url = new URL("https://login.smoobu.com/api/bookings");
+  const url = new URL("https://login.smoobu.com/api/reservations");
   if (typeof apartmentId !== "undefined") {
     url.searchParams.append("apartmentId", apartmentId.toString());
   }

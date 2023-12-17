@@ -11,7 +11,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "../components/ui/input";
 import { db } from "../db/db.server";
 import { users } from "../db/schemas/users";
-import { hash } from "bcrypt";
+import { hashPassword } from "../services/utils.server";
 
 const registerSchema = z.object({
   firstname: z.string().min(1).max(255),
@@ -36,7 +36,7 @@ export async function action({ request }: ActionFunctionArgs) {
       return json({ errors: { email: "email-already-exists" } }, { status: 409 });
     }
 
-    const hashedPassword = await hash(parsed.data.password, 10);
+    const hashedPassword = await hashPassword(parsed.data.password);
     await db.insert(users).values({
       ...parsed.data,
       password: hashedPassword,

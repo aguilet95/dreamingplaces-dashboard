@@ -1,8 +1,11 @@
 import type { SerializeFrom } from "@remix-run/node";
-import { useFetcher } from "@remix-run/react";
+import { Link, useFetcher } from "@remix-run/react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import type { loader } from "../../routes/customer.smoobu";
-import { useEffect } from "react";
+import { Card, CardFooter, CardHeader, CardTitle } from "../ui/card";
+import { Loader } from "../ui/loader";
+import { BookCheck } from "lucide-react";
 
 const CustomerDashboard = () => {
   const { t } = useTranslation();
@@ -13,7 +16,27 @@ const CustomerDashboard = () => {
   }, [load]);
 
   return (
-    <div>COUCOU</div>
+    state === "loading"
+      ? <Loader className="h-10 w-10 animate-spin mx-auto my-4" />
+      : data && data.length > 0
+        ? <div className="grid grid-cols-4 gap-4">
+          {data.map((property) => (
+            <Link key={property.id} to={`/properties/${property.id}`}>
+              <Card className="cursor-pointer transition-all hover:shadow-lg">
+                <CardHeader className="space-y-1">
+                  <CardTitle className="text-2xl font-bold tracking-tight" title="h2">{property.name}</CardTitle>
+                </CardHeader>
+                <CardFooter>
+                  <div className="flex items-center">
+                    <BookCheck className="w-5 h-5 text-gray-500 mr-2" />
+                    <span className="text-sm text-gray-500 font-normal mt-px">{property.bookingsCount} {t("bookings")}</span>
+                  </div>
+                </CardFooter>
+              </Card>
+            </Link>
+          ))}
+        </div>
+        : <p>{t("no-properties")}</p>
   )
 }
 

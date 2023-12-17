@@ -17,5 +17,6 @@
   "recent-accounts": "Accounts without properties",
   "recent-accounts-description": "Accounts without properties affected",
   "manage-account-details": "Manage account",
-  "manage-account-details-description": "Manage accounts accesses"
+  "manage-account-details-description": "Manage accounts accesses",
+  "bookings": "booking(s)"
 }

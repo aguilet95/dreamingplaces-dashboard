@@ -1,7 +1,19 @@
 import { json, type LoaderFunctionArgs } from "@remix-run/node";
-import { authenticator } from "../services/auth.server";
 import { db } from "../db/db.server";
+import { authenticator } from "../services/auth.server";
 import { getApartment, getBookings } from "../services/smoobu.server";
+
+type PropertyAccessWithBookingsCount = {
+  id: number;
+  name: string;
+  location: {
+    country: string;
+  };
+  rooms: {
+    maxOccupancy: number;
+  };
+  bookingsCount: number;
+};
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const user = await authenticator.isAuthenticated(request, {
@@ -16,6 +28,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     orderBy: (propertyAccess, { asc }) => [asc(propertyAccess.propertyId)],
   });
 
+  const properties: PropertyAccessWithBookingsCount[] = [];
   for (const userPropertyAccess of userPropertyAccesses) {
     const [apartment, bookings] = await Promise.all([
       getApartment(userPropertyAccess.propertyId),
@@ -26,7 +39,12 @@ export async function loader({ request }: LoaderFunctionArgs) {
         status: 500,
       });
     }
+
+    properties.push({
+      ...apartment.data,
+      bookingsCount: bookings.data.total_items,
+    })
   }
 
-  return json({});
+  return json(properties);
 }

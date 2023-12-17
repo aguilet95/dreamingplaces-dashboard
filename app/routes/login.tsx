@@ -81,7 +81,7 @@ export default function Login({ children }: { children: React.ReactNode }) {
                   <FormItem>
                     <FormLabel>{t("password")}</FormLabel>
                     <FormControl>
-                      <Input {...field} />
+                      <Input type="password" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

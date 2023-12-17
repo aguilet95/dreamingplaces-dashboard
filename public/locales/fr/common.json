@@ -17,5 +17,6 @@
   "recent-accounts": "Comptes sans propriétés",
   "recent-accounts-description": "Comptes sans propriétés affectées",
   "manage-account-details": "Gérer le compte",
-  "manage-account-details-description": "Gérer les accès dont dispose le compte"
+  "manage-account-details-description": "Gérer les accès dont dispose le compte",
+  "bookings": "réservation(s)"
 }
