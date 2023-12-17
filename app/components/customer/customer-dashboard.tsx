@@ -3,9 +3,9 @@ import { Link, useFetcher } from "@remix-run/react";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import type { loader } from "../../routes/customer.smoobu";
-import { Card, CardFooter, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { Loader } from "../ui/loader";
-import { BookCheck } from "lucide-react";
+import { BookCheck, BedDouble } from "lucide-react";
 
 const CustomerDashboard = () => {
   const { t } = useTranslation();
@@ -25,6 +25,10 @@ const CustomerDashboard = () => {
               <Card className="cursor-pointer transition-all hover:shadow-lg">
                 <CardHeader className="space-y-1">
                   <CardTitle className="text-2xl font-bold tracking-tight" title="h2">{property.name}</CardTitle>
+                  <CardDescription className="flex items-center space-x-1">
+                    <BedDouble className="w-4 h-4 text-gray-500" />
+                    <span>{property.rooms.maxOccupancy}</span>
+                  </CardDescription>
                 </CardHeader>
                 <CardFooter>
                   <div className="flex items-center">

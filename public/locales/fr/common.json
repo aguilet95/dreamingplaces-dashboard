@@ -18,5 +18,8 @@
   "recent-accounts-description": "Comptes sans propriétés affectées",
   "manage-account-details": "Gérer le compte",
   "manage-account-details-description": "Gérer les accès dont dispose le compte",
-  "bookings": "réservation(s)"
+  "bookings": "réservation(s)",
+  "bed-count": "Capacité maximale",
+  "recent-bookings": "Réservations récentes",
+  "no-bookings": "Pas de réservations"
 }

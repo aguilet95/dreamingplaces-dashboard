@@ -18,5 +18,8 @@
   "recent-accounts-description": "Accounts without properties affected",
   "manage-account-details": "Manage account",
   "manage-account-details-description": "Manage accounts accesses",
-  "bookings": "booking(s)"
+  "bookings": "booking(s)",
+  "bed-count": "Number of occupants",
+  "recent-bookings": "Recent bookings",
+  "no-bookings": "No bookings"
 }

@@ -49,6 +49,16 @@ export const getBookings = async ({ apartmentId, pageSize }: { apartmentId?: num
     page: z.number(),
     bookings: z.array(z.object({
       id: z.number(),
+      arrival: z.coerce.date(),
+      departure: z.coerce.date(),
+      "created-at": z.coerce.date(),
+      channel: z.object({
+        name: z.string(),
+      }),
+      "guest-name": z.string(),
+      adults: z.number(),
+      children: z.number(),
+      price: z.number(),
     })),
   });
 
