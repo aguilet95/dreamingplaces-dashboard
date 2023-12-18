@@ -55,10 +55,10 @@ export const getBookings = async ({ apartmentId, pageSize }: { apartmentId?: num
       channel: z.object({
         name: z.string(),
       }),
-      "guest-name": z.string(),
-      adults: z.number(),
-      children: z.number(),
-      price: z.number(),
+      "guest-name": z.string().nullable(),
+      adults: z.number().nullable(),
+      children: z.number().nullable(),
+      price: z.number().nullable(),
     })),
   });
 
@@ -78,5 +78,6 @@ export const getBookings = async ({ apartmentId, pageSize }: { apartmentId?: num
     }
   });
   const jsonResponse = await res.json();
+  console.log({ jsonResponse: jsonResponse.bookings });
   return responseSchema.safeParse(jsonResponse);
 }

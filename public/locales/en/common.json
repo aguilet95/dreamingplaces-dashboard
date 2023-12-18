@@ -21,5 +21,6 @@
   "bookings": "booking(s)",
   "bed-count": "Number of occupants",
   "recent-bookings": "Recent bookings",
-  "no-bookings": "No bookings"
+  "no-bookings": "No bookings",
+  "not-defined": "Not defined"
 }

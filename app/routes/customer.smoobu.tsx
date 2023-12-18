@@ -35,6 +35,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
       getBookings({ apartmentId: userPropertyAccess.propertyId, pageSize: 1 }),
     ]);
     if (!apartment.success || !bookings.success) {
+      console.error("Invalid response from Smoobu", { apartment, bookings, errors: bookings.success ? undefined : bookings.error });
       throw new Response("Invalid response from Smoobu", {
         status: 500,
       });

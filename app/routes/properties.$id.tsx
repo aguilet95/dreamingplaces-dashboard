@@ -93,7 +93,7 @@ export default function PropertyPage() {
                   {property.bookings.bookings.map((booking) => (
                     <div key={booking.id} className="flex flex-row justify-between items-center my-2">
                       <div>
-                        <div className="text-sm font-medium">{booking["guest-name"]}</div>
+                        <div className="text-sm font-medium">{booking["guest-name"] ?? t("not-defined")}</div>
                         <div className="text-gray-500 text-xs">{new Date(booking.arrival).toLocaleDateString()} - {new Date(booking.departure).toLocaleDateString()}</div>
                       </div>
                       <div>

@@ -21,5 +21,6 @@
   "bookings": "réservation(s)",
   "bed-count": "Capacité maximale",
   "recent-bookings": "Réservations récentes",
-  "no-bookings": "Pas de réservations"
+  "no-bookings": "Pas de réservations",
+  "not-defined": "Non renseigné"
 }
