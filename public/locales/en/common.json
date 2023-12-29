@@ -22,5 +22,7 @@
   "bed-count": "Number of occupants",
   "recent-bookings": "Recent bookings",
   "no-bookings": "No bookings",
-  "not-defined": "Not defined"
+  "not-defined": "Not defined",
+  "starting-price": "Starting price",
+  "consult-on-site": "Consult on site"
 }

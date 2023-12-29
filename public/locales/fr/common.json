@@ -22,5 +22,7 @@
   "bed-count": "Capacité maximale",
   "recent-bookings": "Réservations récentes",
   "no-bookings": "Pas de réservations",
-  "not-defined": "Non renseigné"
+  "not-defined": "Non renseigné",
+  "starting-price": "À partir de",
+  "consult-on-site": "Consulter sur le site"
 }

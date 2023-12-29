@@ -5,7 +5,8 @@ import { authenticator } from "../services/auth.server";
 import { getApartment, getBookings } from "../services/smoobu.server";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { useTranslation } from "react-i18next";
-import { BedDouble, BookCheck } from "lucide-react";
+import { BedDouble, BookCheck, BookIcon, Euro, ExternalLink } from "lucide-react";
+import { getCalendars } from "../services/calendar-api.server";
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
   const propertyId = params.id;
@@ -41,9 +42,18 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
     });
   }
 
+  const scripts = await getCalendars();
+  if (!scripts.success) {
+    throw new Response("Invalid response from Calendar API", {
+      status: 500,
+    });
+  }
+  const apiData = scripts.data.apartments.find((script) => script.id === Number(propertyId));
+
   return json({
     apartment: apartment.data,
     bookings: bookings.data,
+    apiData,
   })
 }
 
@@ -53,10 +63,34 @@ export default function PropertyPage() {
 
   return (
     <div className="px-12">
-      <h1 className="text-3xl font-bold tracking-tight">{property.apartment.name}</h1>
-      <p className="text-xs text-gray-500">{property.apartment.id}</p>
+      <div className="flex items-center space-x-6">
+        <div className="w-28 h-28 rounded-full bg-gray-300 bg-cover bg-center border border-gray-300" style={{ backgroundImage: `url(${property.apiData?.og_image})` }} />
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">{property.apartment.name}</h1>
+          <p className="text-xs text-gray-500">{property.apartment.id}</p>
+          {property.apiData?.link &&
+            <a href={property.apiData.link} target="__blank" className="text-sm">
+              {t("consult-on-site")}
+              <ExternalLink className="inline-block w-3 h-3 ml-1" />
+            </a>
+          }
+        </div>
+      </div>
       <div className="mt-8">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {typeof property.apiData?.price === "number" &&
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">
+                  {t("starting-price")}
+                </CardTitle>
+                <Euro className="w-4 h-4 text-gray-500" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{property.apiData.price} €</div>
+              </CardContent>
+            </Card>
+          }
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
@@ -73,7 +107,7 @@ export default function PropertyPage() {
               <CardTitle className="text-sm font-medium capitalize">
                 {t("bookings")}
               </CardTitle>
-              <BedDouble className="w-4 h-4 text-gray-500" />
+              <BookIcon className="w-4 h-4 text-gray-500" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{property.bookings.total_items}</div>
@@ -106,6 +140,13 @@ export default function PropertyPage() {
               }
             </CardContent>
           </Card>
+          {property.apiData &&
+            <Card className="col-span-3">
+              <CardContent>
+                <div dangerouslySetInnerHTML={{ __html: property.apiData.calendar_iframe }} className="text-xs w-full" />
+              </CardContent>
+            </Card>
+          }
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 import type { SessionUser } from "../../services/types/session-user";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "../ui/avatar";
-import { useFetcher } from "@remix-run/react";
+import { Link, useFetcher } from "@remix-run/react";
 import { Badge } from "../ui/badge";
 
 const Header = ({ user }: { user: SessionUser | null }) => {
@@ -17,7 +17,7 @@ const Header = ({ user }: { user: SessionUser | null }) => {
   return (
     <header className="px-8 py-4 shadow-md">
       <div className="flex items-center justify-between">
-        <p className="text-2xl font-bold">Dashboard</p>
+        <Link to="/" className="text-2xl font-bold">Dashboard</Link>
         <div className="flex items-center">
           <Button type="button" onClick={() => changeLanguage('en')} disabled={i18n.language === "en"}>en</Button>
           <Button type="button" onClick={() => changeLanguage('fr')} disabled={i18n.language === "fr"}>fr</Button>
